@@ -1,0 +1,21 @@
+{
+  "name": "iideo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel -o ",
+    "build": "parcel build --public-url ./"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "parcel-bundler": "^1.5.1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^2.7.1"
+  }
+}
