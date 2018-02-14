@@ -27,6 +27,6 @@
 - 运行 `yarn run dev PATH_TO_HTML` 可以测试效果。其中 `PATH_TO_HTML` 是 html 文件的具体路径。例如 `examples/basic/index.html`
 - 运行 `yarn run build PATH_TO_HTML` 可以编译项目。输出到 `dist` 文件夹。
 
-注意：如果编译或者测试时出现问题，请手动清空 .cache 和 dist 文件夹。
+注意：如果编译或者测试时出现问题，请手动清空 .cache 和 dist 文件夹（Linux 或者 macOS 的话，也可以直接 `yarn run clean`）。
 
 你可以先试试看 `yarn run dev examples/basic/index.html`
