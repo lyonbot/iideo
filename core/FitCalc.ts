@@ -13,13 +13,24 @@ class FitCalc {
 
   }
 
+  // 上次fit时的容器大小
+  private _old_ar: number
+  private _old_cw: number
+  private _old_ch: number
+
   /**
    * 根据容器尺寸，重新计算适合的显示区域大小
    *
    * @param width 容器宽度
    * @param height 容器高度
+   * @returns 是否进行了重新计算
    */
-  fit(width: number, height: number) {
+  fit(width: number, height: number): boolean {
+    if (width === this._old_cw && height === this._old_ch && this.aratio === this._old_ar) return false
+    this._old_cw = width
+    this._old_ch = height
+    this._old_ar = this.aratio
+
     const ar = this.aratio
     const ar2 = width / height
 
@@ -34,6 +45,8 @@ class FitCalc {
       this.marginX = 0
       this.marginY = (height - this.height) / 2
     }
+
+    return true
   }
 
   /**
