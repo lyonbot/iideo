@@ -1,6 +1,6 @@
-import { EventPoint, StoryTeller } from './StoryTeller'
+import StoryTeller, { EventPoint } from './StoryTeller'
 
-interface ButtonOptions {
+export interface ButtonOptions {
   start: number
   end: number
   onclick: Function

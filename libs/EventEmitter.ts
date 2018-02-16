@@ -1,16 +1,18 @@
-const listenerSymbol = typeof (Symbol) !== 'undefined ' ? Symbol() : "__@EventListenerList"
+const listenerSymbol = typeof (Symbol) !== 'undefined' ? Symbol() : "__@EventListenerList"
+
+type ListenerList = Function[] | undefined
+type EventListenerMap = { [event: string]: ListenerList }
 
 /**
  * 简化版的，用于浏览器的 EventEmitter
  */
 class EventEmitter {
-  constructor() {
-    /** @type {[event: string]: function[]} */
-    this[listenerSymbol] = {}
+  constructor(){
+    this[listenerSymbol] = {} as EventListenerMap
   }
 
   addEventListener(event, handler) {
-    var lss = this[listenerSymbol]
+    var lss = this[listenerSymbol] as EventListenerMap
     var ls = lss[event]
     if (!ls) lss[event] = [handler]
     else ls.push(handler)
@@ -21,7 +23,7 @@ class EventEmitter {
   }
 
   emit(event, ...args) {
-    var fns = this[listenerSymbol][event]
+    var fns = this[listenerSymbol][event] as ListenerList
     if (!fns || !fns.length) return
     for (let i = 0; i < fns.length; i++) {
       const fn = fns[i]
@@ -30,7 +32,7 @@ class EventEmitter {
   }
 
   removeEventListener(event, handler) {
-    var fns = this[listenerSymbol][event]
+    var fns = this[listenerSymbol][event] as ListenerList
     if (!fns || !fns.length) return
     for (let i = 0; i < fns.length; i++) {
       const fn = fns[i]

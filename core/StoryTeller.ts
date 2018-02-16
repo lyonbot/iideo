@@ -1,8 +1,8 @@
 import EventEmitter from '../libs/EventEmitter'
 import FitCalc from './FitCalc'
 
-type EventPointCallback = (this: EventPoint, time: number, player: StoryTeller) => void
-type StoryResetCallback = (this: EventPoint, was_actived: boolean, player: StoryTeller) => void
+export type EventPointCallback = (this: EventPoint, time: number, player: StoryTeller) => void
+export type StoryResetCallback = (this: EventPoint, was_actived: boolean, player: StoryTeller) => void
 
 export interface EventPoint {
   start: number
@@ -36,7 +36,7 @@ function makeVideoElement(): HTMLVideoElement {
   return v
 }
 
-export class StoryTeller extends EventEmitter {
+class StoryTeller extends EventEmitter {
   public points: EventPoint[] = []
   private _pts_actived: boolean[] = []
 
@@ -53,7 +53,7 @@ export class StoryTeller extends EventEmitter {
    * @param _canvas_mode （实验性）使用 canvas 绘制视频
    */
   constructor(
-    public container: HTMLVideoElement,
+    public container: HTMLElement,
     private _canvas_mode?: boolean
   ) {
     super()
@@ -228,3 +228,5 @@ export class StoryTeller extends EventEmitter {
     }
   }
 }
+
+export default StoryTeller
