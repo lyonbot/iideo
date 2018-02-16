@@ -13,6 +13,7 @@ export interface EventPoint {
   onreset?: StoryResetCallback
 }
 
+/** 创建一个可以用于各种浏览器的 video 元素 */
 function makeVideoElement(): HTMLVideoElement {
   var v = document.createElement('video')
 
@@ -95,11 +96,17 @@ export class StoryTeller extends EventEmitter {
     // 添加触摸相关的事件
 
     var _mouseup = this._mouseup.bind(this)
+    var _mousedown = this._mousedown.bind(this)
+    var _mousemove = this._mousemove.bind(this)
 
     el.addEventListener('mouseup', _mouseup, false)
+    el.addEventListener('mousedown', _mousedown, false)
+    el.addEventListener('mousemove', _mousemove, false)
 
     if (canvas) {
       canvas.addEventListener('mouseup', _mouseup, false)
+      canvas.addEventListener('mousedown', _mousedown, false)
+      canvas.addEventListener('mousemove', _mousemove, false)
     }
 
     // 点击容器任意位置开始播放视频
@@ -131,7 +138,17 @@ export class StoryTeller extends EventEmitter {
 
   private _mouseup(ev: MouseEvent) {
     var [x, y] = this.fitCalc.s2c(ev.clientX, ev.clientY)
-    this.emit('tap', x, y, this)
+    this.emit('tap', x, y, this, ev)
+  }
+
+  private _mousedown(ev: MouseEvent) {
+    var [x, y] = this.fitCalc.s2c(ev.clientX, ev.clientY)
+    this.emit('mousedown', x, y, this, ev)
+  }
+
+  private _mousemove(ev: MouseEvent) {
+    var [x, y] = this.fitCalc.s2c(ev.clientX, ev.clientY)
+    this.emit('mousemove', x, y, this, ev)
   }
 
   updateFitCalc() {
@@ -170,6 +187,7 @@ export class StoryTeller extends EventEmitter {
   reset(emitLeaveEvents?: boolean, time?: number) {
     const pts = this.points
     var status = this._pts_actived
+    var new_status = new Array(pts.length)
     for (let i = 0; i < pts.length; i++) {
       const was_actived = !!status[i]
       const pt = pts[i]
@@ -182,8 +200,10 @@ export class StoryTeller extends EventEmitter {
         if (typeof onleave === 'function') onleave.call(pt, time, this)
       }
 
-      status[i] = false
+      new_status[i] = false
     }
+
+    this._pts_actived = new_status
   }
 
   /**
