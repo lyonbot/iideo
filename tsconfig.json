@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
-    "module": "es6",
-    "target": "es6",
+    "module": "commonjs",
+    "target": "es5",
     "outDir": "dist",
     "declaration": true,
-    "declarationDir": "typings"
+    "declarationDir": "typings",
+    "lib": [
+      "dom",
+      "es6"
+    ]
   },
   "files": [
     "index.ts"

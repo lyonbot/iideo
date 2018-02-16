@@ -18,3 +18,4 @@ tmp/
 
 dist/*
 !dist/iideo.js
+typings/

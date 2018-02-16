@@ -23,4 +23,8 @@ namespace iideo {
   export const Button = _Button
 }
 
+if (typeof(window) == "object") {
+  window["iideo"] = iideo
+}
+
 export default iideo

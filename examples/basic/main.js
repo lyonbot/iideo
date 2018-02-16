@@ -1,8 +1,3 @@
-/// 引入核心库
-/// 如果网页上有 <script> 标签引用了 iideo.js ，可以删除下面这一行。
-import iideo from '../../index.js'
-
-
 var container = document.getElementById('app')
 var iv = iideo(container)
 
@@ -10,11 +5,9 @@ var story = iv.story
 var video = iv.video
 
 /// 设置视频文件地址 和 封面图
-/// 这里使用了 require 方法，以便 webpack/parcel 等打包器使用。
-/// 实际使用中，把 require 去掉，用字符串输入文件地址即可。
 
-video.src = require("./1.mp4")
-video.poster = require("./1.jpg")
+video.src = "./1.mp4"
+video.poster = "./1.jpg"
 
 /// 以下是故事情节
 
