@@ -24,9 +24,7 @@
 首先，你需要运行 `yarn` 或者 `npm i` 安装依赖，才能继续开发
 
 - 运行 `yarn run build` 可以编译核心库。核心库输出到 `dist` 文件夹下。
-- 运行 `yarn run dev PATH_TO_HTML` 可以测试效果。其中 `PATH_TO_HTML` 是 html 文件的具体路径。例如 `examples/basic/index.html`
-- 运行 `yarn run build PATH_TO_HTML` 可以编译项目。输出到 `dist` 文件夹。
+  - `iideo.js` 是打包好的，可以直接用于浏览器的库
+  - 其他文件是模块化的，基于 ES5 的库，可以按需使用
 
-注意：如果编译或者测试时出现问题，请手动清空 .cache 和 dist 文件夹（Linux 或者 macOS 的话，也可以直接 `yarn run clean`）。
-
-你可以先试试看 `yarn run dev examples/basic/index.html`
+你可以先看看 `examples/basic` 的示例 js 代码，然后在浏览器里试试效果。
